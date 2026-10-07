@@ -1,6 +1,19 @@
-package com.ecommerce.model;
+package ecommerce.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+
+@Entity
+@Table(name = "productos")
 public class Producto{
+    @Id 
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     //Atributos
     private int id;
     private String nombre;
@@ -8,11 +21,15 @@ public class Producto{
     private double precio;
     private String imagen;
     private int cantidad;
+    //Un usuario puede tener muchos productos
+    @ManyToOne 
+    private Usuario usuario;
+
     //Constructores
     public Producto() {
     }
     //Constructor con parametros
-    public Producto(int id, String nombre, String descripcion, double precio, String imagen, int cantidad) {
+    public Producto(int id, String nombre, String descripcion, double precio, String imagen, int cantidad, Usuario usuario) {
         super();
         this.id = id;
         this.nombre = nombre;
@@ -20,12 +37,13 @@ public class Producto{
         this.precio = precio;
         this.imagen = imagen;
         this.cantidad = cantidad;
+        this.usuario = usuario;
     }
 //G & S ID _____________________________________________________
     public int getId() {
         return id;
     }
-//*************************************** */
+    //*************************************** */
     public void setId(int id) {
         this.id = id;
     }
@@ -33,7 +51,7 @@ public class Producto{
     public String getNombre() {
         return nombre;
     }
-//*************************************** */
+    //*************************************** */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -41,7 +59,7 @@ public class Producto{
     public String getDescripcion() {
         return descripcion;
     }
-//*************************************** */
+    //*************************************** */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -49,7 +67,7 @@ public class Producto{
     public double getPrecio() {
         return precio;
     }
-//*************************************** */
+    //*************************************** */
     public void setPrecio(double precio) {
         this.precio = precio;
     }
@@ -57,7 +75,7 @@ public class Producto{
     public String getImagen() {
         return imagen;
     }
-//*************************************** */
+    /*************************************** */
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
@@ -65,15 +83,22 @@ public class Producto{
     public int getCantidad() {
         return cantidad;
     }
-//*************************************** */
+    //*************************************** */
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-
+//G & S USUARIO _____________________________________________________
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    //*************************************** */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 //toString _____________________________________________________
 
     @Override
-    public
+
     public String toString() {
         return "Producto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
                 + ", imagen=" + imagen + ", cantidad=" + cantidad + "]";

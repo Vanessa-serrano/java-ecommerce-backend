@@ -1,14 +1,36 @@
-package com.ecommerce.model;
+package ecommerce.model;
 import java.util.Date;
 
+import org.hibernate.annotations.ManyToAny;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+@Entity
+@Table(name = "ordenes")
 public class Orden {
     //Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String numero;
     private Date fechaCreacion;
     private Date fechaRecibida;
 
     private double total;
+
+    //Un usuario puede tener muchas ordenes.
+    @ManyToOne 
+    private Usuario usuario;
+    //Una orden puede tener un detalle
+    @OneToOne (mappedBy = "orden")
+    private DetalleOrden detalle;
+
     //Constructores
     public Orden() {
     }
@@ -60,4 +82,26 @@ public class Orden {
     public void setTotal(double total) {
         this.total = total;
     }    
+//G & S USUARIO _____________________________________________________
+    public Usuario getUsuario() {
+        return usuario;
+    }   
+    //*************************************** */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+//G & S DETALLES
+    public DetalleOrden getDetalle(){
+        return detalle;
+    }
+    //************************************** */
+    public void setDetalle(DetalleOrden detalle){
+        this.detalle = detalle;
+    }
+
+//toString _____________________________________________________
+    @Override
+    public String toString() {
+        return "Orden{" + "id=" + id + ", numero='" + numero + '\'' + ", fechaCreacion=" + fechaCreacion + ", fechaRecibida=" + fechaRecibida + ", total=" + total + '}';
+    }
 }
