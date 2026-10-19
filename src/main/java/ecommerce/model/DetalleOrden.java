@@ -1,11 +1,13 @@
 package ecommerce.model;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
 
 @Entity 
 @Table (name ="detalles")
@@ -18,11 +20,11 @@ public class DetalleOrden {
     private double precio;
     private int cantidad;   
     private double total;
-
+//Una orden por cada detalle
     @OneToOne 
     private Orden orden;
-
-    @OneToOne 
+//Muchos productos pueden estar en un detalles de orden
+    @ManyToOne 
     private Producto producto;
 
     //Constructores
