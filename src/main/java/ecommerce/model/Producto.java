@@ -24,6 +24,7 @@ public class Producto{
     //Un usuario puede tener muchos productos
     @ManyToOne 
     private Usuario usuario;
+    public Object getId;
 
     //Constructores
     public Producto() {
