@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.ui.Model;
 import ecommerce.model.Producto;
 import ecommerce.model.Usuario;
 import ecommerce.service.ProductoService;
@@ -20,7 +21,8 @@ public class ProductoController {
     private ProductoService productoService;
 
     @GetMapping("")
-    public String show(){
+    public String show(Model model) {
+        model.addAttribute("productos", productoService.findAll());
         return "productos/show";
     }
     
