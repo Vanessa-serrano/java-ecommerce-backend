@@ -1,5 +1,4 @@
-package ecommerce.model;
-import jakarta.annotation.Generated;
+package model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;

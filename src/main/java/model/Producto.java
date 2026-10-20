@@ -1,11 +1,10 @@
-package ecommerce.model;
+package model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 
@@ -24,8 +23,6 @@ public class Producto{
     //Un usuario puede tener muchos productos
     @ManyToOne 
     private Usuario usuario;
-    public Object getId;
-
     //Constructores
     public Producto() {
     }

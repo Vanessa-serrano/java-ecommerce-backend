@@ -1,16 +1,15 @@
-package ecommerce.controller;
+package controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-
 @Controller
-@RequestMapping("administrador")
+@RequestMapping("/administrador")
 public class AdministradoController {
+
     @GetMapping("")
     public String home(){
-        return"administrador/home";
+        return "administrador/home";
     }
 }

@@ -1,19 +1,20 @@
-package ecommerce.service;
+package service;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ecommerce.model.Producto;
-import ecommerce.repository.ProductoRepository;
+import model.Producto;
+import repository.ProductoRepository;
 
 
 @Service
-public class ProductoServiceImpl implements ProductoService{
+public class ProductoServiceImpl implements ProductoService {
 
-    @Autowired
-    private ProductoRepository productoRepository;
+    private final ProductoRepository productoRepository;
+
+    public ProductoServiceImpl(ProductoRepository productoRepository) {
+        this.productoRepository = productoRepository;
+    }
 
 	@Override
 	public Producto save(Producto producto) {

@@ -1,7 +1,5 @@
-package ecommerce.model;
+package model;
 import java.util.Date;
-
-import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
