@@ -4,6 +4,7 @@ import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -40,6 +41,27 @@ public class ProductoController {
         return "redirect:/productos";
     }
 
+    @GetMapping ("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model){
+        Producto producto = productoService.get(id)
+                .orElseThrow(() -> new IllegalArgumentException("Producto no encontrado: " + id));
+        model.addAttribute("producto", producto);
+        LOGGER.info("Producto buscado: {}", producto);
+        model.addAttribute("producto",producto);
+        return "productos/edit";
+    }
+
+    @PostMapping("/update")
+    public String update(Producto producto) {
+        Producto productoExistente = productoService.get(producto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Producto no encontrado: " + producto.getId()));
+        productoExistente.setNombre(producto.getNombre());
+        productoExistente.setDescripcion(producto.getDescripcion());
+        productoExistente.setCantidad(producto.getCantidad());
+        productoExistente.setPrecio(producto.getPrecio());
+        productoService.update(productoExistente);
+        return "redirect:/productos";
+    }
 
 
 }
