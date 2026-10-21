@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EntityScan(basePackages = "model")
 @EnableJpaRepositories(basePackages = "repository")
-@SpringBootApplication(scanBasePackages = {"controller", "service"})
+@SpringBootApplication(scanBasePackages = {"controller", "service", "ecommerce"})
 public class SpringEcommerceApplication {
 
     public static void main(String[] args) {
