@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import model.Producto;
 import service.ProductoService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller 
 @RequestMapping ("/")
@@ -26,7 +29,7 @@ public class HomeController {
         model.addAttribute("productos", productoService.findAll());
         return "usuario/home";
     }
-
+//Producto
     @GetMapping("productohome/{id}")
     public String productoHome(@PathVariable Integer id, Model model) {
         Producto producto = productoService.get(id)
@@ -35,5 +38,12 @@ public class HomeController {
         log.info("Mostrando producto {}", id);
         return "usuario/productohome";
     }
+//Carrito
+    @PostMapping("/cart")
+    public String addCart(){
+        
+        return "usuario/carrito";
+    }
+    
 
 }
